@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceView;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
@@ -26,5 +28,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         driverManagerDataSource.setPassword("sslabflask");
 
         return driverManagerDataSource;
+    }
+
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jps");
+
+        return resolver;
     }
 }
